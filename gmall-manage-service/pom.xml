@@ -18,6 +18,8 @@
 	</parent>
 	<dependencies>
 
+
+
 		<dependency>
 			<groupId>com.atguigu.gmall</groupId>
 			<artifactId>gmall-interface</artifactId>

@@ -15,6 +15,19 @@
     </parent>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>3.10.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baqend</groupId>
+            <artifactId>bloom-filter</artifactId>
+            <version>1.0.7</version>
+        </dependency>
+
         <dependency>
             <groupId>com.atguigu.gmall</groupId>
             <artifactId>gmall-common-util</artifactId>
