@@ -1,5 +1,6 @@
 package com.atgugu.gmall.manage.controller;
 
+import org.apache.commons.lang3.StringUtils;
 import org.csource.common.MyException;
 import org.csource.fastdfs.ClientGlobal;
 import org.csource.fastdfs.StorageClient;
@@ -22,28 +23,19 @@ import java.io.IOException;
 @RestController
 public class FileUploadController {
 
-    @RequestMapping(value = "fileUpload",method = RequestMethod.POST)
-    public String fileUpload(@RequestParam("file") MultipartFile file) throws IOException, MyException {
-        if(file!=null){
-            System.out.println("multipartFile = " + file.getName()+"|"+file.getSize());
-        }
-        String conf = this.getClass().getResource("/tracker.conf").getFile();
-        ClientGlobal.init(conf);
-        TrackerClient trackerClient = new TrackerClient();
-        TrackerServer trackerServer = trackerClient.getConnection();
-        StorageClient storageClient = new StorageClient(trackerServer, null);
-
-        String[] upload_file = storageClient.upload_file(file.getBytes(), "jpg", null);
-        String fileUrl="";
-        for (int i = 0; i < upload_file.length; i++) {
-            String s = upload_file[i];
-            System.out.println("s = " + s);
-            fileUrl+="/"+s;
-        }
-
-        return "http://192.168.81.128"+fileUrl;
+    @RequestMapping(value = "fileUpload", method = RequestMethod.POST)
+    public String fileUpload(@RequestParam("file") MultipartFile file) {
+        return FileUtil.getImagePath(file);
     }
 
+
+
+    /**
+     * 测试方法
+     *
+     * @throws IOException
+     * @throws MyException
+     */
     @Test
     public void textFileUpload() throws IOException, MyException {
         String file = this.getClass().getResource("/tracker.conf").getFile();
